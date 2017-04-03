@@ -22,7 +22,7 @@ public class NameService {
      * @throws IllegalArgumentException if fullName is null or empty or has 
      * fewer than two parts
      */
-    public String extractLastName(String fullName) {
+    public String extractLastName(String fullName) throws IllegalArgumentException {
         if (fullName == null || fullName.isEmpty()) {
             throw new IllegalArgumentException("Must enter a name");
         } else {
