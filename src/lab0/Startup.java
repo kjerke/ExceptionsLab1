@@ -28,15 +28,10 @@ public class Startup {
         // the user gets a nice, friendly message.
         try {
             emp = new Employee("","","3333333333",28);
-            String fullNameInCaps = 
-                emp.getFirstName().toUpperCase() 
-                + " " + emp.getLastName().toUpperCase();
-            System.out.println("Employee Name: " + fullNameInCaps);
+            emp.setDaysVacation(-1);
             
         } catch(IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
         }
-        
-        System.out.println(emp.toString());
     }
 }

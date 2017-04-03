@@ -23,9 +23,18 @@ public class Challenge1 {
         Challenge1 app = new Challenge1();
         
         String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
-        String lastName = app.extractLastName(fullName);
-        String msg = "Your last name is: " + lastName;
+        String lastName = "";
+        
+        try {
+        lastName = app.extractLastName(fullName);
+        String msg = "Assuming you followed instructions, your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
+            
+        } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+        
     }
     
     // write the code to extract the lastName from the fullName
@@ -33,16 +42,17 @@ public class Challenge1 {
     // is null or empty. Throw the exception to the calling method. and handle
     // it there.
     public String extractLastName(String fullName) throws IllegalArgumentException {
+        String lastName = null;
         
         if(fullName == null || fullName.isEmpty()) {
-            throw new IllegalArgumentException("Please enter in your name.");
+            throw new IllegalArgumentException("Please enter in your full name.");
         }
         
         String[] nameParts = fullName.split(" ");
         if (nameParts.length > 2) {
-            throw new IllegalArgumentException("Please enter in your first + last name");
+            throw new IllegalArgumentException("Please enter in your first + last name seperated by a space");
         }
-        // Your code goes here.
+        lastName = nameParts[nameParts.length - 1];
         
         return nameParts [nameParts.length - 1];
     }

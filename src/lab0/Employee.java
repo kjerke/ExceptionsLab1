@@ -22,6 +22,7 @@ public class Employee {
     private String lastName;
     private String ssn;
     private int daysVacation;
+    private boolean valid = false;
 
     public Employee() {
         // initialize a bunch of default values
@@ -50,7 +51,10 @@ public class Employee {
         return daysVacation;
     }
 
-    public final void setDaysVacation(int daysVacation) {
+    public final void setDaysVacation(int daysVacation) throws IllegalArgumentException {
+        if (daysVacation < 0 || daysVacation > 28) {
+            throw new IllegalArgumentException("Days vacation can not be less than 0 or greater than 28");
+    }
         this.daysVacation = daysVacation;
     }
 
@@ -90,10 +94,17 @@ public class Employee {
         return ssn;
     }
 
-    public final void setSsn(String ssn) {
-        this.ssn = ssn;
+    public final void setSsn(String ssn) throws IllegalArgumentException {
+  if(ssn.length()==11) {
+         if( (ssn.charAt(3)=='-') & (ssn.charAt(6)=='-') ) {
+            String str = ssn.replaceAll("-", "");
+            if (str.matches("[0-9]+") & str.length()==9) {
+               valid = true;
+            }
+         }
+      }
+            
     }
-
     public String toString() {
         return firstName + " " + lastName;
     }
